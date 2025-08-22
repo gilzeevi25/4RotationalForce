@@ -1,0 +1,21 @@
+name: Backend Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt pytest
+      - name: Run tests
+        env:
+          DATASTORE_PROVIDER: csv
+          DATA_FILE_PATH: data/sample.csv
+          DEV_INCLUDE_LOCALHOST: "true"
+        run: pytest -q
+
