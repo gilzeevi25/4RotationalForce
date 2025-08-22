@@ -1,9 +1,18 @@
+from __future__ import annotations
 import csv
 import ipaddress
 import bisect
 from typing import Optional
 
-class CsvIpLocator:
+from .base import IpLocator
+
+
+class CsvIpLocator(IpLocator):
+    """
+    CSV-backed locator.
+    CSV format: ip,city,country  (comma-separated, one entry per line)
+    """
+
     def __init__(self, path: str):
         self._map: dict[str, tuple[str, str]] = {}
         self._sorted_ips: list[str] = []
@@ -26,8 +35,11 @@ class CsvIpLocator:
                 ip, city, country = row[0].strip(), row[1].strip(), row[2].strip()
                 if not self._valid_ipv4(ip):
                     continue
+                # store as (country, city) to match API response order
                 self._map[ip] = (country, city)
         self._sorted_ips = sorted(self._map.keys())
+
+    # ---- IpLocator interface ----
 
     def lookup(self, ip: str) -> Optional[tuple[str, str]]:
         return self._map.get(ip)
@@ -37,5 +49,7 @@ class CsvIpLocator:
             return []
         lo = bisect.bisect_left(self._sorted_ips, prefix)
         hi = bisect.bisect_right(self._sorted_ips, prefix + "\uffff")
-        return self._sorted_ips[lo:hi][:max(1, min(limit, 50))]
+        # clamp limit between 1 and 50 defensively
+        limit = max(1, min(limit, 50))
+        return self._sorted_ips[lo:hi][:limit]
 
