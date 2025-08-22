@@ -1,10 +1,76 @@
+# --- Python ---
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.pdb
+*.pkl
+*.so
+*.egg
+*.egg-info/
+.eggs/
+build/
+develop-eggs/
+dist/
+wheels/
+*.manifest
+*.spec
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.wheels/
+
+# --- Environment files ---
 .env
 .env.*
 *.env
+
+# --- Node / Frontend ---
 node_modules/
 dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- IDEs / Editors ---
+# VSCode
 .vscode/
-.venv/
-.wheels/
+.history/
+
+# PyCharm
+.idea/
+*.iml
+out/
+# PyCharm coverage
+*.coverage
+*.coverage.*
+.cache/
+pytest_cache/
+
+# --- Testing / Coverage ---
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+coverage.xml
+htmlcov/
+*.lcov
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# --- Logs ---
+*.log
+logs/
+*.pid
+*.seed
+*.bak
+
+# --- Misc ---
+.DS_Store
+Thumbs.db
