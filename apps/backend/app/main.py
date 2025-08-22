@@ -21,7 +21,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-LOCATOR = build_locator(settings.DATASTORE_PROVIDER, settings.DATA_FILE_PATH)
+LOCATOR = build_locator(settings.DATASTORE_PROVIDER, settings.data_file_path_abs)
+
+log.info(f"[startup] CORS allow_origins={settings.computed_allowed_origins}")
+log.info(f"[startup] data_file_path_abs={settings.data_file_path_abs}")
 
 def _is_ipv4(s: str) -> bool:
     try:

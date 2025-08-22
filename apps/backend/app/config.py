@@ -60,6 +60,16 @@ class Settings(BaseSettings):
 
         return out
 
+    @property
+    def data_file_path_abs(self) -> str:
+        """
+        Resolve DATA_FILE_PATH relative to apps/backend if not absolute.
+        """
+        p = Path(self.DATA_FILE_PATH)
+        if p.is_absolute():
+            return str(p)
+        return str((BACKEND_DIR / p).resolve())
+
 
 try:
     settings = Settings()

@@ -12,7 +12,7 @@ COPY --from=builder /wheels /wheels
 RUN pip install --no-index --find-links=/wheels /wheels/*
 
 COPY apps/backend/app /app/app
-COPY data /app/data
+COPY apps/backend/data /app/data
 
 EXPOSE 8080
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
