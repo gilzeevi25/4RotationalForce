@@ -6,6 +6,7 @@ os.environ.setdefault("DEV_INCLUDE_LOCALHOST", "true")
 
 from fastapi.testclient import TestClient
 from app.main import app
+from app.config import TORQUE_MESSAGES
 from app.datastore.base import IpLocator
 from app.datastore.csv_provider import CsvIpLocator
 
@@ -34,7 +35,7 @@ def test_find_country_invalid():
 def test_find_country_not_found():
     r = client.get("/v1/find-country", params={"ip": "9.9.9.9"})
     assert r.status_code == 404
-    assert r.json()["error"] == "not found"
+    assert r.json()["error"] in TORQUE_MESSAGES
 
 def test_suggest_ok():
     r = client.get("/v1/suggest", params={"prefix": "8."})
