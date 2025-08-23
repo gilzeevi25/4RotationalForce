@@ -7,7 +7,7 @@ simple prefix suggestions.
 
 - **Backend**: FastAPI service under `apps/backend`
 - **Frontend**: Vue 3 + Vite app under `apps/frontend`
-- **Deployment**: Render for the API and GitHub Pages for the frontend
+- **Deployment**: Render for the backend and GitHub Pages for the frontend
 
 ## Local development
 
