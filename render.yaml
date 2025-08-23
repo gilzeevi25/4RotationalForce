@@ -13,7 +13,7 @@ services:
         value: INFO
       # Derives CORS origin from this URL's origin
       - key: FRONTEND_BASE_URL
-        value: https://<your-gh-username>.github.io/<your-repo>
+        value: https://gilzeevi25.github.io/4RotationalForce
       # Optional JSON list of extra origins
       # - key: ALLOWED_ORIGINS
       #   value: '["https://example.com"]'
