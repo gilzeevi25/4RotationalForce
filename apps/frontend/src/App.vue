@@ -8,9 +8,9 @@ const missingApi = !apiBase
   <div id="app">
     <div class="container">
       <div class="glass">
-        <div class="h1">IP → Country</div>
+        <div class="h1">Spin2Country 🌍</div>
         <div class="subtitle">
-          Type an IPv4 address. We’ll look up its <b>country</b> and <b>city</b>.
+          Type an IPv4 address. I’ll spin it up and return its <b>country</b> and <b>city</b>.
         </div>
 
         <div v-if="missingApi" class="banner">
@@ -19,7 +19,7 @@ const missingApi = !apiBase
         </div>
 
         <IpSearch />
-        <div class="footer">UI palette inspired by Torq (accent #85C4FF)</div>
+        <div class="footer">⚡ Hint: Enter something like <code>0.1.2.3</code> to trigger some <b>torq</b>ue jokes.</div>
       </div>
     </div>
     <PresentedBy />

@@ -1,4 +1,4 @@
-# IP → Country (FastAPI + Vue)
+# Spin2Country 🌍 (FastAPI + Vue)
 
 - Backend: FastAPI on Render
 - Frontend: Vue (Vite) on GitHub Pages

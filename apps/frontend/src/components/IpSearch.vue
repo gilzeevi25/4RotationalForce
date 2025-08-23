@@ -164,7 +164,7 @@ onBeforeUnmount(() => {
           autocomplete="off"
           autocapitalize="off"
           spellcheck="false"
-          placeholder="e.g., 2.22.233.255"
+          placeholder="e.g., 2.22.233.255 or 8.8.8.8"
           :aria-invalid="!valid && ip.length>0"
           :aria-controls="listboxId"
           role="combobox"
@@ -210,7 +210,7 @@ onBeforeUnmount(() => {
 
       <div v-if="errorMsg" class="error" role="alert">{{ errorMsg }}</div>
       <div class="helper">
-        We only accept IPv4 (e.g., 8.8.8.8). Autocomplete offers known IPs from the active datastore.
+        UI only accept IPv4 (e.g., 8.8.8.8). Autocomplete offers known IPs from the active datastore.
       </div>
     </div>
   </form>

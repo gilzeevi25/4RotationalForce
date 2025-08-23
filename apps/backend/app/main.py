@@ -6,12 +6,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .models import LocationResponse, ErrorResponse, SuggestResponse
 from .datastore.factory import build_locator
+import random
 
+TORQUE_MESSAGES = [
+    "Torque is the rotational force that makes things spin. This IP? Not found — must’ve torqued itself right off the map!",
+    "Torque is force × distance, the reason wheels turn. Sadly, this IP didn’t — I couldn’t find it.",
+    "Torque makes merry-go-rounds go round. Your IP? Not found — maybe it spun away too fast!",
+    "In physics, torque measures how much a force causes rotation. This IP? Rotated so hard it disappeared.",
+    "Torque twists bolts and turns engines. This IP? Over-torqued into oblivion."
+]
 log = logging.getLogger("uvicorn")
 if settings.LOG_LEVEL:
     logging.getLogger().setLevel(settings.LOG_LEVEL)
 
-app = FastAPI(title="IP → Country Service", version="1.0.0")
+app = FastAPI(title="Spin2Country Service", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -48,7 +56,7 @@ def find_country(ip: str = Query(..., description="IPv4 address")):
         return Response(ErrorResponse(error="invalid IP").model_dump_json(), status_code=400, media_type="application/json")
     res = LOCATOR.lookup(ip)
     if not res:
-        return Response(ErrorResponse(error="not found").model_dump_json(), status_code=404, media_type="application/json")
+        return Response(ErrorResponse(error=random.choice(TORQUE_MESSAGES)).model_dump_json(), status_code=404, media_type="application/json")
     country, city = res
     return LocationResponse(country=country, city=city)
 
