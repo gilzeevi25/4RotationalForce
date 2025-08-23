@@ -24,12 +24,19 @@ html, body, #app {
 }
 #app > *:first-child { flex: 1; }
 
-.container { max-width: 720px; margin: 8vh auto; padding: 24px; }
+.container {
+  max-width: 720px;
+  width: 100%;
+  margin: 8vh auto;
+  padding: 24px;
+}
 .glass {
+  width: 100%;
   background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   border: 1px solid rgba(255,255,255,.08);
   box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
-  border-radius: 16px; padding: 24px;
+  border-radius: 16px;
+  padding: 24px;
 }
 .h1 { font-size: 24px; font-weight: 700; letter-spacing: .2px; }
 .subtitle { color: var(--text-300); margin-top: 6px; line-height: 1.35; }
@@ -71,8 +78,12 @@ html, body, #app {
   background: rgba(133,196,255,.08); color: var(--text-100);
 }
 .result, .error {
-  margin-top: 16px; padding: 14px 16px; border-radius: 12px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
   border: 1px solid rgba(255,255,255,.08);
+  word-break: break-word;
 }
 .result { background: rgba(133,196,255,.06); }
 .error  { background: rgba(255, 75, 75, .07); border-color: rgba(255, 75, 75, .25); color: #ffb3b3; }
