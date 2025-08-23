@@ -17,6 +17,13 @@ html, body, #app {
   color: var(--text-100);
   font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
+#app {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+#app > *:first-child { flex: 1; }
+
 .container { max-width: 720px; margin: 8vh auto; padding: 24px; }
 .glass {
   background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
