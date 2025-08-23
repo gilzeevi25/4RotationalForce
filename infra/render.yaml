@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ip2country-backend
+    name: spintocountry-backend
     env: docker
     plan: free
     healthCheckPath: /healthz
