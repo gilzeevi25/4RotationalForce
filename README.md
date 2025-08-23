@@ -12,20 +12,28 @@ simple prefix suggestions.
 ## Local development
 
 ### Backend
-1. Create a virtual environment and install dependencies:
-   ```bash
-   python3 -m venv .venv
-   .venv/bin/pip install -r apps/backend/requirements.txt
-   ```
-2. Configure environment variables in `apps/backend/.env`:
-   - `DATASTORE_PROVIDER` – datastore implementation (e.g. `csv`)
-   - `DATA_FILE_PATH` – path to `ip,city,country` CSV
-   - Optional: `LOG_LEVEL`, `FRONTEND_BASE_URL`, `ALLOWED_ORIGINS`, `DEV_INCLUDE_LOCALHOST`
-3. Run the API (reload for dev):
-   ```bash
-   .venv/bin/uvicorn app.main:app --reload --app-dir apps/backend/app
-   ```
-   Endpoints: `/healthz`, `/v1/find-country`, `/v1/suggest`
+- FastAPI service with:
+  - `GET /healthz` – basic health check
+  - `GET /v1/find-country?ip=1.2.3.4`
+  - `GET /v1/suggest?prefix=1.2.` (CSV‑backed autocomplete)
+- Configuration is environment‑driven. During local development create
+  `apps/backend/.env`:
+
+  ```env
+  DATASTORE_PROVIDER=csv
+  DATA_FILE_PATH=data/sample.csv
+  DEV_INCLUDE_LOCALHOST=true
+  ```
+
+- Run locally:
+
+  ```bash
+  cd apps/backend
+  python -m venv .venv
+  source .venv/bin/activate
+  pip install -r requirements.txt
+  uvicorn app.main:app --reload
+  ```
 
 ### Frontend
 1. Install dependencies and start the Vite dev server:
