@@ -1,0 +1,11 @@
+name: Warm Render Backend
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # every 10 minutes
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl healthz
+        run: curl -fsS https://spintocountry-backend.onrender.com/healthz || true
