@@ -9,7 +9,13 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 # Always resolve .env inside apps/backend
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 ENV_PATH = BACKEND_DIR / ".env"
-
+TORQUE_MESSAGES = [
+    "Torque is the rotational force that makes things spin. This IP? Not found — must’ve torqued itself right off the map!",
+    "Torque is force × distance, the reason wheels turn. Sadly, this IP didn’t — I couldn’t find it.",
+    "Torque makes merry-go-rounds go round. Your IP? Not found — maybe it spun away too fast!",
+    "In physics, torque measures how much a force causes rotation. This IP? Rotated so hard it disappeared.",
+    "Torque twists bolts and turns engines. This IP? Over-torqued into oblivion."
+]
 
 def origin_of(url: Optional[str]) -> Optional[str]:
     if not url:

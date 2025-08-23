@@ -3,15 +3,16 @@ import re
 import ipaddress
 from fastapi import FastAPI, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
-from .config import settings
+from .config import settings,TORQUE_MESSAGES
 from .models import LocationResponse, ErrorResponse, SuggestResponse
 from .datastore.factory import build_locator
+from random import choice
 
 log = logging.getLogger("uvicorn")
 if settings.LOG_LEVEL:
     logging.getLogger().setLevel(settings.LOG_LEVEL)
 
-app = FastAPI(title="IP → Country Service", version="1.0.0")
+app = FastAPI(title="Spin2Country Service", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -48,7 +49,7 @@ def find_country(ip: str = Query(..., description="IPv4 address")):
         return Response(ErrorResponse(error="invalid IP").model_dump_json(), status_code=400, media_type="application/json")
     res = LOCATOR.lookup(ip)
     if not res:
-        return Response(ErrorResponse(error="not found").model_dump_json(), status_code=404, media_type="application/json")
+        return Response(ErrorResponse(error=choice(TORQUE_MESSAGES)).model_dump_json(), status_code=404, media_type="application/json")
     country, city = res
     return LocationResponse(country=country, city=city)
 
